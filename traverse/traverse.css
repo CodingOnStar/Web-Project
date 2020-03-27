@@ -1,0 +1,50 @@
+/*
+ * @Author: Hanxu Jiang 
+ * @Date: 2020-03-27 20:20:56 
+ * @Last Modified by: Hanxu Jiang
+ * @Last Modified time: 2020-03-27 21:55:49
+ */
+.container,
+p {
+    width: 840px;
+    margin: 30px auto;
+}
+
+.div-1 {
+    margin-top: 180px;
+}
+
+div {
+    display: flex;
+    padding: 15px;
+    margin: 10px;
+    align-items: center;
+    background-color: white;
+    border: 3px solid black;
+}
+
+p {
+    display: flex;
+    justify-content: space-around;
+}
+
+p button {
+    width: 120px;
+    height: 40px;
+    vertical-align: bottom;
+    background-color: lightskyblue;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 3px solid lightskyblue;
+    outline: none;
+}
+
+button:hover {
+    color: lightskyblue;
+    background-color: black;
+    border: black;
+}
+
+div.active {
+    background-color: green;
+}
