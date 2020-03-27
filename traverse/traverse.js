@@ -2,7 +2,7 @@
  * @Author: Hanxu Jiang 
  * @Date: 2020-03-27 20:52:32 
  * @Last Modified by: Hanxu Jiang
- * @Last Modified time: 2020-03-27 22:36:22
+ * @Last Modified time: 2020-03-27 22:45:32
  */
 var timer = null;
 var animateList = [];
@@ -13,7 +13,7 @@ var postOrder = document.querySelector('#postOrder');
 
 
 //add Event
-function addHandler(element, type, handler) {
+function addClick(element, type, handler) {
     if (element.addEventListener) {
         element.addEventListener(type, handler, false);
     } else if (element.attachEvent) {
@@ -85,7 +85,7 @@ var orderItems = {
 
 var operation = {
     addButtonEvent() {
-        addHandler(preOrder, 'click', function (type) {
+        addClick(preOrder, 'click', function (type) {
             clearInterval(timer);
             animateList = [];
             orderItems.preOrder(container);
@@ -93,7 +93,7 @@ var operation = {
             orderItems.animate();
         });
 
-        addHandler(inOrder, 'click', function (type) {
+        addClick(inOrder, 'click', function (type) {
             clearInterval(timer);
             animateList = [];
             orderItems.inOrder(container);
@@ -101,7 +101,7 @@ var operation = {
             orderItems.animate();
         });
 
-        addHandler(postOrder, 'click', function (type) {
+        addClick(postOrder, 'click', function (type) {
             clearInterval(timer);
             animateList = [];
             orderItems.postOrder(container);
