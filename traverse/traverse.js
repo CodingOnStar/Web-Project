@@ -2,7 +2,7 @@
  * @Author: Hanxu Jiang 
  * @Date: 2020-03-27 20:52:32 
  * @Last Modified by: Hanxu Jiang
- * @Last Modified time: 2020-03-27 22:01:13
+ * @Last Modified time: 2020-03-27 22:36:22
  */
 var timer = null;
 var animateList = [];
@@ -22,98 +22,100 @@ function addHandler(element, type, handler) {
         element["on" + type] = handler;
     }
 }
-(function () {
-    var orderItems = {
-        preOrder: function (node) {
-            while (node) {
-                animateList.push(node);
-                if (node.firstElementChild) {
-                    this.preOrder(node.firstElementChild);
-                }
-                if (node.lastElementChild) {
-                    this.preOrder(node.lastElementChild);
-                }
-            }
-        },
-        inOrder: function (node) {
-            while (node) {
-                if (node.firstElementChild) {
-                    this.inOrder(node.firstElementChild);
-                }
 
-                animateList.push(node);
-
-                if (node.lastElementChild) {
-                    this.inOrder(node.lastElementChild);
-                }
+var orderItems = {
+    preOrder(node) {
+        if (node != null) {
+            //这里不能写while(node)，想一想为什么
+            animateList.push(node);
+            if (node.firstElementChild) {
+                this.preOrder(node.firstElementChild);
             }
-        },
-        postOrder: function (node) {
-            while (node) {
-                if (node.firstElementChild) {
-                    this.postOrder(node.firstElementChild);
-                }
-                if (node.lastElementChild) {
-                    this.postOrder(node.lastElementChild);
-                }
-                animateList.push(node);
+            if (node.lastElementChild) {
+                this.preOrder(node.lastElementChild);
             }
-        },
-        reset: function () {
-            animateList.forEach(function (item) {
-                item.className = item.className.replace('active', '');
-            });
-        },
-        animate: function () {
-            var i = 0;
-            animateList[i].className += ' active';
-            timer = setInterval((e) => {
-                i++;
-                if (i < animateList.length) {
-                    animateList[i - 1].className = animateList[i - 1].className.replace('active', '');
-                    animateList[i].className += 'active';
-                }
-                else {
-                    clearInterval(timer);
-                    animateList[i - 1].className = animateList[i - 1].className.replace('active', '');
-                }
-            }, 500);
         }
-    };
+    },
+    inOrder(node) {
+        if (node != null) {
+            if (node.firstElementChild) {
+                this.inOrder(node.firstElementChild);
+            }
 
-    var operation = {
-        addButtonEvent: function () {
-            addHandler(preOrder, 'click', function (type) {
-                clearInterval(timer);
-                animateList = [];
-                orderItems.preOrder(container);
-                orderItems.reset();
-                orderItems.animate();
-            });
+            animateList.push(node);
 
-            addHandler(inOrder, 'click', function (type) {
-                clearInterval(timer);
-                animateList = [];
-                orderItems.inOrder(container);
-                orderItems.reset();
-                orderItems.animate();
-            });
-
-            addHandler(postOrder, 'click', function (type) {
-                clearInterval(timer);
-                animateList = [];
-                orderItems.postOrder(container);
-                orderItems.reset();
-                orderItems.animate();
-            });
-        },
-
-        init: function () {
-            this.addButtonEvent();
+            if (node.lastElementChild) {
+                this.inOrder(node.lastElementChild);
+            }
         }
-    };
-    operation.init();
-})()
+    },
+    postOrder(node) {
+        if (node != null) {
+            if (node.firstElementChild) {
+                this.postOrder(node.firstElementChild);
+            }
+            if (node.lastElementChild) {
+                this.postOrder(node.lastElementChild);
+            }
+            animateList.push(node);
+        }
+    },
+    reset() {
+        animateList.forEach(function (item) {
+            item.className = item.className.replace('active', '');
+        });
+    },
+    animate() {
+        var i = 0;
+        animateList[i].className += ' active';
+        timer = setInterval(function () {
+            //这里不能用箭头函数，想一想为什么
+            i++;
+            if (i < animateList.length) {
+                animateList[i - 1].className = animateList[i - 1].className.replace('active', '');
+                animateList[i].className += 'active';
+            }
+            else {
+                clearInterval(timer);
+                animateList[i - 1].className = animateList[i - 1].className.replace('active', '');
+            }
+        }, 500);
+    }
+};
+
+var operation = {
+    addButtonEvent() {
+        addHandler(preOrder, 'click', function (type) {
+            clearInterval(timer);
+            animateList = [];
+            orderItems.preOrder(container);
+            orderItems.reset();
+            orderItems.animate();
+        });
+
+        addHandler(inOrder, 'click', function (type) {
+            clearInterval(timer);
+            animateList = [];
+            orderItems.inOrder(container);
+            orderItems.reset();
+            orderItems.animate();
+        });
+
+        addHandler(postOrder, 'click', function (type) {
+            clearInterval(timer);
+            animateList = [];
+            orderItems.postOrder(container);
+            orderItems.reset();
+            orderItems.animate();
+        });
+    },
+
+    init() {
+        this.addButtonEvent();
+    }
+};
+operation.init();
+
 
 
 
