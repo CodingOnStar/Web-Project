@@ -2,7 +2,7 @@
  * @Author: Hanxu Jiang 
  * @Date: 2020-03-27 20:52:32 
  * @Last Modified by: Hanxu Jiang
- * @Last Modified time: 2020-03-27 22:45:32
+ * @Last Modified time: 2020-03-28 23:08:43
  */
 var timer = null;
 var animateList = [];
@@ -13,6 +13,7 @@ var postOrder = document.querySelector('#postOrder');
 
 
 //add Event
+//IE7和8不支持addEventListener和removeEventListener，取而代之的是attachEvent和detachEvent
 function addClick(element, type, handler) {
     if (element.addEventListener) {
         element.addEventListener(type, handler, false);
@@ -72,6 +73,7 @@ var orderItems = {
             //这里不能用箭头函数，想一想为什么
             i++;
             if (i < animateList.length) {
+                //前一个结点回复平常，当前结点active
                 animateList[i - 1].className = animateList[i - 1].className.replace('active', '');
                 animateList[i].className += 'active';
             }
