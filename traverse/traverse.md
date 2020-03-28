@@ -25,3 +25,6 @@
     elementNodeReference.className = cName;
     
 ###cName是一个字符串变量,表示当前元素的class属性的值,可以是由空格分隔的多个class属性值.
+
+##element.style.backgroundColor
+###对于每个结点，都可以通过js来操作css的属性
