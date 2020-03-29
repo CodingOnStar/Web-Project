@@ -19,12 +19,12 @@
 //IE7和8不支持addEventListener和removeEventListener，取而代之的是attachEvent和detachEvent
 
 #className 
-*获取或设置指定元素的class属性的值。
+* 获取或设置指定元素的class属性的值。
 
     let cName = elementNodeReference.className;
     elementNodeReference.className = cName;
     
-*cName是一个字符串变量,表示当前元素的class属性的值,可以是由空格分隔的多个class属性值.
+* cName是一个字符串变量,表示当前元素的class属性的值,可以是由空格分隔的多个class属性值.
 
-*element.style.backgroundColor
-*对于每个结点，都可以通过js来操作css的属性
+* element.style.backgroundColor
+* 对于每个结点，都可以通过js来操作css的属性
