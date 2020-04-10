@@ -2,7 +2,7 @@
  * @Author: Hanxu Jiang
  * @Date: 2020-04-10 14:48:09
  * @Last Modified by: Hanxu Jiang
- * @Last Modified time: 2020-04-10 16:36:00
+ * @Last Modified time: 2020-04-10 21:39:04
  */
 
 function addEventhandler(element, event, listener) {
@@ -76,7 +76,7 @@ window.onload = function () {
         isEmpty() {
             return this.str.length === 0;
         },
-        render: function (match) {
+        render(match) {
             $('.down').innerHTML = this.str.map(function (item) {
                 if (match != null && match.length > 0) {
                     item = item.replace(new RegExp(match, "g"), '<span class="selected">' + match + '</span>');
