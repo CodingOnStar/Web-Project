@@ -2,7 +2,7 @@
  * @Author: Hanxu Jiang 
  * @Date: 2020-03-27 20:52:32 
  * @Last Modified by: Hanxu Jiang
- * @Last Modified time: 2020-03-28 23:30:58
+ * @Last Modified time: 2020-04-10 13:04:03
  */
 var timer = null;
 var animateList = [];
@@ -54,6 +54,7 @@ var orderItems = {
             animateList.push(node);
             if (node.firstElementChild) {
                 this.preOrder(node.firstElementChild);
+                //返回第一个元素结点，因为在非IE浏览器中，会将空格生成为结点
             }
             if (node.lastElementChild) {
                 this.preOrder(node.lastElementChild);
