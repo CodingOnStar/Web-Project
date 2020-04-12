@@ -3,10 +3,42 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="tribute.css">
 </head>
 
 <body>
+    <style>
+        * {
+            background-color: silver;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #img-caption {
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        #img-div {
+            background-color: white;
+        }
+
+        #image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        li {
+            margin-left: 40%;
+            line-height: 40px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
     <main class="main">
         <header>
             <h1 id="title">Bergman Jiang</h1>
@@ -31,9 +63,10 @@
             </ul>
 
             <h3>
-                "I'm just a student learning CS. Look me here for"
+                I'm just a student learning CS. Look me here for&nbsp<a id="tribute-link" href=""
+                    target="_blank">Detail</a>
             </h3>
-            <a id="tribute-link" href="" target="_blank">Detail</a>
+
         </section>
     </main>
 </body>
