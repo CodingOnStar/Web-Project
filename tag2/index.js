@@ -23,18 +23,18 @@ function addHandler(element, type, handler) {
     }
 }
 
-window.onload=function () {
+window.onload = function () {
     /**
      * @param {String} -input 输入框的id
      * @param {String} -output 输出框的class
      * @param {String} -button 按钮的id，可选，如果不选则默认触发键盘事件
      */
     //createTag获得的是立即执行函数的返回值，_tag构造函数
-    var createTag = (function() {
+    var createTag = (function () {
 
         //构造函数
-        function _tag(input,output,button) {
-            this.data =[];
+        function _tag(input, output, button) {
+            this.data = [];
 
             //公有属性
             this.input = document.getElementById(input);
@@ -44,7 +44,7 @@ window.onload=function () {
 
             this.getData = function () {
                 var value = '';
-                switch (input){
+                switch (input) {
                     case 'tagInput':
                         value = this.input.value.match(/([^,\， ]*)/)[0];
                         break;
@@ -59,12 +59,12 @@ window.onload=function () {
             };
 
             this.render = function () {
-                var text= '';
+                var text = '';
                 this.data.forEach(function (item) {
                     text += '<span>' + item + '</span>';
 
                 });
-                    this.output.innerHTML = text;
+                this.output.innerHTML = text;
             };
             this.delData = function (ele) {
                 var index = this.data.indexOf(ele.innerHTML.replace(/删除:/, ''));
@@ -83,7 +83,7 @@ window.onload=function () {
 
 
 
-        
+
         //构造函数原型方法
         _tag.prototype = {
             /**
@@ -110,34 +110,34 @@ window.onload=function () {
 
 
 
-            init : function (type) {
+            init: function (type) {
                 var that = this;//记住构造函数本身;
 
-                addHandler(that.output,'mouseover',function (e) {
-                        if(e.target && e.target.nodeName == "SPAN") {
-                            event.target.innerHTML = '删除:' + event.target.innerHTML;
-                            event.target.style.backgroundColor = '#edae9e';
-                        }
+                addHandler(that.output, 'mouseover', function (e) {
+                    if (e.target && e.target.nodeName == "SPAN") {
+                        event.target.innerHTML = '删除:' + event.target.innerHTML;
+                        event.target.style.backgroundColor = '#edae9e';
+                    }
 
                 });
-                addHandler(that.output,'mouseout',function (e) {
-                    if(e.target && e.target.nodeName == "SPAN") {
+                addHandler(that.output, 'mouseout', function (e) {
+                    if (e.target && e.target.nodeName == "SPAN") {
                         event.target.innerHTML = event.target.innerHTML.replace(/删除:/, '');
                         event.target.style.backgroundColor = '#16324a';
                     }
                 });
-                addHandler(that.output,'click',function (event) {
+                addHandler(that.output, 'click', function (event) {
                     that.delData(event.target);
 
                 });
-                switch (type){
+                switch (type) {
                     case 'KeyEvent':
 
-                        addHandler(document,'keyup',function (event) {
+                        addHandler(document, 'keyup', function (event) {
                             //空格：32，逗号：188,换行:13
-                            if (/(,| |\，)$/.test(that.input.value) || ( document.activeElement.id =='tagInput' && event.keyCode===13 )) {
+                            if (/(,| |\，)$/.test(that.input.value) || (document.activeElement.id == 'tagInput' && event.keyCode === 13)) {
                                 //如果标签输入验证通过
-                                that.validateData( that.getData() );
+                                that.validateData(that.getData());
                                 that.input.value = '';
                                 that.render();
                             }
@@ -145,7 +145,7 @@ window.onload=function () {
                         break;
                     case 'ButtonEvent':
 
-                        addHandler(that.button,'click',function () {
+                        addHandler(that.button, 'click', function () {
                             var values = that.getData();//获得数组
                             values.forEach(function (item) {
                                 that.validateData(item.trim());
@@ -169,11 +169,11 @@ window.onload=function () {
 
         return _tag;
 
-        
+
     })();
 
-    var tag = new createTag('tagInput','tagList');
-    var hobby = new createTag('hobbyInput','hobbyList','confirm');
+    var tag = new createTag('tagInput', 'tagList');
+    var hobby = new createTag('hobbyInput', 'hobbyList', 'confirm');
 
 }
 
