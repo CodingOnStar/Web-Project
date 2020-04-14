@@ -1,0 +1,39 @@
+* {
+    background-color: silver;
+}
+
+header {
+    text-align: center;
+}
+
+#img-caption {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
+
+figure {
+    text-align: center;
+}
+
+#img-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+li {
+    margin-left: 40%;
+    line-height: 40px;
+}
+
+h3 {
+    text-align: center;
+}
