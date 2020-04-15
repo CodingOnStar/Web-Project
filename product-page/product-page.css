@@ -1,3 +1,10 @@
+:root {
+    --color-white: #f3f3f3;
+    --color-darkblue: #1b1b32;
+    --color-darkblue-alpha: rgba(27, 27, 50, 0.8);
+    --color-green: #37af65;
+}
+
 body {
     font-family: 'cooper', sans-serif;
     font-size: 1rem;
@@ -10,10 +17,17 @@ body {
 
 header {
     display: flex;
+    margin-top: 10px;
+}
+
+.join-div>h2 {
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 2.5em;
 }
 
 img {
-    max-width: 30%;
+    max-width: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +37,7 @@ img {
 }
 
 nav {
-    font-weight: 450;
+    font-weight: 400;
     padding-right: 100px;
 }
 
@@ -42,6 +56,53 @@ li {
 a {
     color: #000;
     text-decoration: none;
+    font-size: 20px;
+}
+
+.join-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 180px;
+}
+
+form {
+    width: 30%;
+}
+
+input[type="email"] {
+    width: 100%;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    font-size: inherit;
+    font-weight: 800;
+    width: 50%;
+    background: var(--color-green);
+    color: inherit;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 30px;
+}
+
+
+iframe {
+    max-width: 700px;
+    width: 100%;
+    height: 500px;
+}
+
+figcaption {
+    font-size: inherit;
+    font-weight: 800;
+    margin-top: 10px;
 }
 
 .container {
