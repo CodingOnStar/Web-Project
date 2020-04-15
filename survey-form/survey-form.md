@@ -12,3 +12,6 @@
 
 ### width与display
 关于表单中label和text的布局，可以多想想width与display属性的运用
+
+### 伪元素的使用
+::before和::after
