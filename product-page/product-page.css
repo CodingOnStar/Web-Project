@@ -92,6 +92,12 @@ input[type="submit"] {
     height: 30px;
 }
 
+#team-introduction {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
 
 iframe {
     max-width: 700px;
@@ -106,6 +112,38 @@ figcaption {
 }
 
 .container {
-    text-align: center;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
 
+.grid {
+    display: flex;
+    justify-content: start;
+}
+
+#about-us .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 10vw;
+    margin-right: 0;
+}
+
+#about-us .icon img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+}
+
+.desc>h2 {
+    margin-bottom: 0;
+}
+
+p {
+    margin-top: 0;
 }
