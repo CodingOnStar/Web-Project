@@ -6,8 +6,3 @@
     position: relative;
     word-break: normal;
     word-wrap: normal;
-    line-height: 2;
-    background-color: #f7f7f7;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 5px;
