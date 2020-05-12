@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="left">left </div>
+    <div class="right">right </div>
+</div>
+<!--第一种 利用margin和padding-->
+<style>
+    .container {
+        overflow: hidden;
+        width: 400px;
+    }
+
+    .container .left,
+    .container .right {
+        float: left;
+        margin-bottom: -10000px;
+        padding-bottom: 10000px;
+    }
+
+    .container .left {
+        width: 20%;
+        background: pink;
+    }
+
+    .container .right {
+        width: 80%;
+        background: deeppink;
+    }
+</style>
+<!--第二种利用flex，兼容性IE10下面不能使用，手机端也有些兼容-->
+<style>
+    .container {
+        display: flex;
+        width: 400px;
+        overflow: hidden;
+    }
+
+    .container .left {
+        width: 20%;
+        background: pink;
+    }
+
+    .container .right {
+        width: 80%;
+        background: deeppink;
+    }
+</style>

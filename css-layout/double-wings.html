@@ -1,44 +1,43 @@
-<style>
-    .content {
-        float: left;
-        width: 100%;
-    }
+<html>
 
-    .main {
-        height: 200px;
-        margin-left: 110px;
-        margin-right: 220px;
-        background: green;
-    }
+<head>
+    <style>
+        .content {
+            float: left;
+            width: 100%;
+        }
 
-    .main::after {
-        content: '';
-        display: block;
-        font-size: 0;
-        height: 0;
-        zoom: 1;
-        clear: both;
-    }
+        .main {
+            height: 200px;
+            margin-left: 110px;
+            margin-right: 220px;
+            background: green;
+        }
 
-    .left {
-        float: left;
-        height: 200px;
-        width: 100px;
-        margin-left: -100%;
-        background: red;
-    }
+        .left {
+            float: left;
+            height: 200px;
+            width: 100px;
+            margin-left: -100%;
+            background: red;
+        }
 
-    .right {
-        float: right;
-        height: 200px;
-        width: 200px;
-        background: blue;
-        margin-left: -200%;
-    }
-</style>
+        .right {
+            float: right;
+            height: 200px;
+            width: 200px;
+            background: blue;
+            margin-left: -200%;
+        }
+    </style>
+</head>
 
-<div class="content">
-    <div class="main"></div>
-</div>
-<div class="left"></div>
-<div class="right"></div>
+<body>
+    <div class="content">
+        <div class="main"></div>
+    </div>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+
+</html>
