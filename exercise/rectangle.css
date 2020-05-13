@@ -1,0 +1,26 @@
+/*实现一个自适应的正方形*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 20%;
+    /* 设置height为0 ，避免盒子被内容撑开多余的高度 */
+    height: 0px;
+    /* 把盒子的高撑开，
+	   和width设置同样的固定的宽度或者百分比 ，
+	   百分比相对的是父元素盒子的宽度 */
+    padding-bottom: 20%;
+    background: pink;
+    color: #666;
+    position: relative;
+    overflow: hidden;
+}
+
+p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: yellow;
+}
