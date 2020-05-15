@@ -21,3 +21,8 @@ function fn(a) {
 4.找函数声明
 因此声明变量的变量提升，所以以上console出的结果是function、123、123、function
 */
+var a = 123;
+function a() { };
+/*全局变量跳过2和3步，第一步建立GO（global object），暨window
+未用var声明的变量，在GO中建立
+*/
