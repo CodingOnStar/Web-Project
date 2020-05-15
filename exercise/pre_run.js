@@ -13,7 +13,7 @@ function fn(a) {
     先创建声明的变量之后记录函数
     AO{
         a: function(){};
-        b: function(){};
+        b: undefined;
         d: function(){};
     }
 2.找形参，变量声明，赋值为undefined
