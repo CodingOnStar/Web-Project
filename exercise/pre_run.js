@@ -26,3 +26,4 @@ function a() { };
 /*全局变量跳过2和3步，第一步建立GO（global object），暨window
 未用var声明的变量，在GO中建立
 */
+//引申可以看作用域链和闭包
