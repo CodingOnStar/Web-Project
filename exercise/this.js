@@ -15,7 +15,7 @@ function Person() {
 var person = new Person();
 console.log(person.sayName());
 console.log(Person.prototype.sayName());
-*/
+
 var name = "222";
 var a = {
     name: "111",
@@ -35,3 +35,27 @@ var b = {
 b.say(a.say);//执行时，b的say函数中this指向b，但此时是fun()，不是this.fun(),因此执行预编译过程，既window.name
 b.say = a.say;
 b.say();
+
+var foo = '123';
+function print() {
+    var foo = '234';
+    this.foo = '456';//this指向window,所以改变的是全局的foo
+    console.log(foo);//打印的是AO中的foo
+}
+print();
+
+var foo = '123';
+function print() {
+    this.foo = '234';
+    console.log(foo);//123
+}
+new print()//new之后，在print中先var this=Object.create(print.prototype),this的指向改变
+*/
+var foo = '123';
+Print.prototype.foo = '456';
+function Print() {
+    console.log(this.foo);//456
+    this.foo = '234';
+    console.log(this.foo);//234
+}
+new Print()
