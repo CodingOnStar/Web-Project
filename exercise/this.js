@@ -32,6 +32,6 @@ var b = {
         fun();
     }
 }
-b.say(a.say);
+b.say(a.say);//执行时，b的say函数中this指向b，但此时是fun()，不是this.fun(),因此执行预编译过程，既window.name
 b.say = a.say;
 b.say();
