@@ -9,9 +9,6 @@ function type(target) {
     }
     if (target === null) {
         return null;
-    }
-    if (typeof (target) == 'function') {
-        return 'function';
     } else if (typeof (target) == 'object') {
         var str = object.prototype.toString.call(target);
         return template[str]
