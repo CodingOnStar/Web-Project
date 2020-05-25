@@ -9,13 +9,14 @@ function deepClone(origin, target) {
     toStr = Object.prototype.toString();
     arrStr = "[object Array]";
     for (var prop in origin) {
-        if (origin.hasOwnProperty(prop)) {
+        if (origin[prop] !== "null" && origin.hasOwnProperty(prop)) {
             if (typeof origin[prop] === "object") {
                 if (toStr.call(origin[prop]) == arrStr) {
                     target[prop] = [];
                 } else {
                     target[prop] = {};
                 }
+                //此处可以修改为三步运算符（target[prop] = toStr.call(origin[prop]) == arrStr ? []:{};）
                 deepClone(origin[prop], target[prop]);
             }
             else {
