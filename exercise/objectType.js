@@ -16,6 +16,6 @@ function type(target) {
         var str = object.prototype.toString.call(target);
         return template[str]
     } else {
-        return typeof target
+        return typeof (target)
     }
 }
