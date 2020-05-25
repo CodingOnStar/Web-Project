@@ -12,7 +12,7 @@ function type(target) {
     }
     if (typeof (target) == 'function') {
         return 'function';
-    } else if (typeof target == 'object') {
+    } else if (typeof (target) == 'object') {
         var str = object.prototype.toString.call(target);
         return template[str]
     } else {
