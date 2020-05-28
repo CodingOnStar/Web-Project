@@ -63,3 +63,24 @@ function getScrollOffset() {
         }
     }
 }
+//getViewPort
+function getViewPort() {
+    if (window.innerWidth) {
+        return {
+            x: window.innerWidth,
+            y: window.innerHeight
+        }
+    } else {
+        if (document.compatMode === "BackCompat") {
+            return {
+                x: document.body.clientWidth,
+                y: document.body.clientHeight
+            }
+        } else {
+            return {
+                x: document.documentElement.clientWidth,
+                y: document.documentElement.clientHeight
+            }
+        }
+    }
+}
