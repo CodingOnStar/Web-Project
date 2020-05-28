@@ -40,3 +40,26 @@ function retSibling(elem, n) {
     }
     return elem;
 }
+//封装insertAfter 
+Element.prototype.insertAfter = function (targetNode, AfterNode) {
+    beforeNode = AfterNode.nextElementSibling;
+    if (beforeNode != null) {
+        this.insertBefore(targetNode, beforeNode);
+    } else {
+        this.appendChild(targetNode);
+    }
+}
+//getScrollOffset
+function getScrollOffset() {
+    if (window.pageXOffset) {
+        return {
+            x: window.pageXOffset,
+            y: window.pageYOffset
+        }
+    } else {
+        return {
+            x: document.documentElement.scrollLeft + document.body.scrollLeft,
+            y: document.documentElement.scrollTop + document.body.scrollTop
+        }
+    }
+}
