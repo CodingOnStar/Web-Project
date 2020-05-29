@@ -1,3 +1,4 @@
+//封装typeof
 function type(target) {
     var template = {
         "[object Number]": "number - object ",
