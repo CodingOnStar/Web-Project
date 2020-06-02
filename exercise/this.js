@@ -32,7 +32,7 @@ var b = {
         fun();
     }
 }
-b.say(a.say);//执行时，b的say函数中this指向b，但此时是fun()，不是this.fun(),因此执行预编译过程，既window.name
+b.say(a.say);//a.say相当于一个函数体在b.say这个函数体中执行，执行时，b的say函数中this指向b，但此时fun()没有调用者(不是this.fun())，既参数直接执行，因此执行预编译过程，既window.name
 b.say = a.say;
 b.say();
 
