@@ -3,7 +3,7 @@ Array.prototype.unique = function () {
     var temp = {}, arr = [], len = this.length;
     for (var i = 0; i < len; i++) {
         if (!temp[this[i]]) {
-            temp[this[i]] = "exist";
+            temp[this[i]] = "exist";//随便赋一个值，创建这个属性
             arr.push(this[i]);
         }
     }
