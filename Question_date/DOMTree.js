@@ -84,3 +84,46 @@ function getViewPort() {
         }
     }
 }
+//封装addEventListener，使其具有兼容性
+function addClick(element, type, handler) {
+    if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+    } else if (element.attachEvent) {
+        element.attachEvent("on" + type, handler);
+    } else {
+        element["on" + type] = handler;
+    }
+}
+//封装取消冒泡
+/*
+例：div.onclick = function(e){
+    stopBubble(e);
+    ...
+    ...
+}
+*/
+function stopBubble(event) {
+    if (event.stopPropagation) {
+        event.stopPropagation();
+    } else {
+        event.cancelBubble = true;
+    }
+}
+//封装阻止默认事件
+function cancelHandler(event) {
+    if (event.preventDefault) {
+        event.preventDefault();
+    } else {
+        event.returnValue = false;
+    }
+}
+/*事件委托：利用事件和事件源对象进行处理
+div.onclick = function(e) {
+    var event = e || window.event;
+    var target = event.target || event.srcElement;
+    target....
+}
+优点：
+1.性能，不需要循环所有元素一个个绑定事件
+2.灵活，当有新的元素时，不需要重新绑定事件
+*/
