@@ -127,3 +127,41 @@ div.onclick = function(e) {
 1.性能，不需要循环所有元素一个个绑定事件
 2.灵活，当有新的元素时，不需要重新绑定事件
 */
+
+//封装drag
+function drag(elem) {
+    var disX, disY;
+    elem.addEventListener('mousedown', function (e) {
+        var event = e || window.event;
+        disX = event.pageX - parseInt(elem.style.left); //这两者用于计算点击时鼠标的坐标和div左上角的距离
+        disY = event.pageY - parseInt(elem.style.top); //之后在拖动时，也要让鼠标和左上角时始终保持此距离
+        function mouseUpTest(elem, event) {
+            elem.style.left = event.pageX - disX + 'px';
+            elem.style.top = event.pageY - disY + 'px';
+        }
+        document.addEventListener('mousemose', mouseUpTest(elem, event), false);
+        //此处用document，使得当鼠标离开div时，也能使div跟随 
+        document.addEventListener('mouseup', function () {
+            document.removeEventListener('mousemove', mouseUpTest)
+        })
+    }, false);
+}
+//区别drag和click
+var firstTime = 0;
+var lastTime = 0;
+var key = false;
+document.onmousedown = function () {
+    firstTime = new Date().getTime();
+}
+document.onmouseup = function () {
+    lastTime = new Date().getTime();
+    if (lastTime - firstTime < 300) {
+        key = true;
+    }
+}
+document.click = function () {
+    if (key) {
+        console.log('click');
+        key = false;
+    }
+}

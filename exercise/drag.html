@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag</title>
+</head>
+
+<body>
+    <div style="width: 100px; height: 100px;background-color:red;position:absolute;left:0;top:0;"></div>
+    <script type="text/javascript">
+        div = document.getElementsByTagName('div')[0];
+        var disX, disY;
+        div.onmousedown = function (e) {
+            var event = e || window.event;
+            disX = event.pageX - parseInt(div.style.left); //这两者用于计算点击时鼠标的坐标和div左上角的距离
+            disY = event.pageY - parseInt(div.style.top); //之后在拖动时，也要让鼠标和左上角时始终保持此距离
+            document.onmousemove = function (event) { //此处用document，使得当鼠标离开div时，也能使div跟随
+                div.style.left = event.pageX - disX + 'px';
+                div.style.top = event.pageY - disY + 'px';
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+
+</html>
