@@ -165,3 +165,26 @@ document.click = function () {
         key = false;
     }
 }
+//封装加载script外部文件
+function loadScript(url, callback) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+
+    if (script.readystate) {
+        script.onreadystatechange = function () {//readyState改变时，才会触发的事件
+            if (script.readyState == 'complete' || script.readyState == 'loaded') {
+                callback()
+            }
+        }
+    } else {
+        script.onload = function () {
+            callback()//执行url中的代码//chrome Firefox Safari Opera //IE使用状态位readystate
+        }
+    }
+    script.src = url //在上面先绑定事件，防止src直接加载完成无法触发事件
+    document.head.appendChild(script);
+}
+loadScript(pre_run.js, function () {
+    type()
+})//执行时,利用匿名函数执行引入文件中的callback函数（因为执行时loadScript时，外部文件还未加载完成，如果直接调用函数，参数会报引用错误）
+//或者传入字符串，用eval解析；或者把外部文件的函数封装进对象中，之后传入字符串，用Object[callback]解析
