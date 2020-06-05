@@ -58,7 +58,7 @@ function createBannerArea(areaDOM, options) {
             sp.style.marginLeft = "7px";
             sp.style.borderRadius = "50%";
             sp.style.cursor = "pointer";
-            sp.addEventListener("click", function () {
+            sp.addEventListener("mouseover", function () {
                 curIndex = i;
                 setStatus();
             })
@@ -89,7 +89,7 @@ function createBannerArea(areaDOM, options) {
         //2.图片的状态
         var targetMarginLeft = curIndex * -100;
         imageArea.children[0].style.marginLeft = targetMarginLeft + "%";
-        imageArea.children[0].style.transition = "margin-left 1s ease-out";//此处使用CSS3中transition即可
+        imageArea.children[0].style.transition = "margin-left 1s ease-out";//此处使用CSS3中transition即可。如果使用animation+keyframes也可以
         /*
         var start = parseInt(imageArea.children[0].style.marginLeft);
         var end = curIndex * -100;
