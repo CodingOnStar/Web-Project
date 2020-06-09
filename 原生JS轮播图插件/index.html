@@ -1,39 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Banner Plugin</title>
     <style>
-        #banner {
-            width: 60%;
-            height: 500px;
-            margin: 0 auto;
-        }
+      #banner {
+        width: 60%;
+        height: 500px;
+        margin: 0 auto;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div id="banner">
-    </div>
+  <body>
+    <div id="banner"></div>
     <script src="./banner_plugin.js"></script>
     <script>
-        var div = document.getElementById('banner');
-        createBannerArea(div, [{
-                imgUrl: './images/1.jpg',
-                link: 'www.baidu.com'
-            },
-            {
-                imgUrl: './images/2.jpg',
-                link: 'www.baidu.com'
-            },
-            {
-                imgUrl: './images/3.jpg',
-                link: 'www.baidu.com'
-            }
-        ]);
+      var div = document.getElementById("banner");
+      createBannerArea(div, [
+        { imgUrl: "./images/1.jpg", link: "www.baidu.com" },
+        { imgUrl: "./images/2.jpg", link: "www.baidu.com" },
+        { imgUrl: "./images/3.jpg", link: "www.baidu.com" },
+      ]);
     </script>
-</body>
-
+  </body>
 </html>
