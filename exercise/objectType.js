@@ -10,10 +10,10 @@ function type(target) {
     }
     if (target === null) {
         return null;
-    } else if (typeof (target) == 'object') {
+    } else if (typeof (target) == 'object') {//判断是不是对象
         var str = object.prototype.toString.call(target);
         return template[str]
     } else {
-        return typeof (target)
+        return typeof (target)//判断原始值和function
     }
 }
