@@ -37,7 +37,6 @@ function createWaterFall(areaDOM, url, imgWidth) {
             img.src = url[i];
             img.style.width = imgWidth + 'px';
             img.style.position = 'absolute';
-            console.log(img)
             img.onload = function () {
                 setImgPosition();//使图片每加载一张就重新布局
             }
