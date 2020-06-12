@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.page {
+  width: 500px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnActiveUp {
+  width: 50px;
+  height: 20px;
+}
+.btnActiveDown {
+  width: 50px;
+  height: 20px;
+}
+.midBtnActive {
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+  line-height: 20px;
+  font-size: 16px;
+}
+.curActive {
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+  line-height: 20px;
+  font-size: 16px;
+  background-color: blue;
+}
