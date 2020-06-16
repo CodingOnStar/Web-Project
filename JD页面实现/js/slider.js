@@ -110,7 +110,9 @@ class Slider {
         if (this.animated) {
             return
         }
-
+        if (this.changeTimer) {
+            return; //如果已经开始计时了，就停止再次计时
+        }
         this.changeTimer = setInterval(() => {
             if (this.index === this.sliders) {
                 this.index = 1;
@@ -119,9 +121,6 @@ class Slider {
             }
             this.move(this.sliderWidth);
         }, 2000);
-        if (this.changeTimer) {
-            return; //如果已经开始计时了，就停止再次计时
-        }
     }
 
 }
