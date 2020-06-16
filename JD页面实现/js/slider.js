@@ -55,6 +55,7 @@ class Slider {
             this.indexBox.children[0].children[i].className = ""
         }
         this.indexBox.children[0].children[this.index - 1].className = "active"
+
     }
     animate(offset) {
         const time = 1000;
@@ -68,7 +69,7 @@ class Slider {
                 this.picBox.style.left = goal;
                 clearInterval(animate);
                 this.animated = false;
-
+                //到头尾时，跳转
                 if (parseFloat(this.picBox.style.left) == 0) {
                     this.picBox.style.left = -this.sliders * this.sliderWidth + 'px';
                 } else if (parseFloat(this.picBox.style.left) == -(this.sliders + 1) * this.sliderWidth) {
@@ -92,7 +93,10 @@ class Slider {
             } else {
                 this.index--
             }
+            clearInterval(this.changeTimer)
             this.move(-this.sliderWidth);
+            this.autoChange();
+
         });
         this.box.querySelector('.right-box').addEventListener('click', () => {
             if (this.animated) {
@@ -103,16 +107,12 @@ class Slider {
             } else {
                 this.index++
             }
+            clearInterval(this.changeTimer)
             this.move(this.sliderWidth);
+            this.autoChange();
         })
     }
     autoChange() {
-        if (this.animated) {
-            return
-        }
-        if (this.changeTimer) {
-            return; //如果已经开始计时了，就停止再次计时
-        }
         this.changeTimer = setInterval(() => {
             if (this.index === this.sliders) {
                 this.index = 1;
