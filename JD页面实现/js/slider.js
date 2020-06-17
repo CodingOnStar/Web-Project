@@ -8,7 +8,6 @@ class Slider {
         this.animated = false;//当前是否在执行动画
         this.sliders = this.picBox.children.length;
         this.sliderWidth = this.box.clientWidth
-        this.autoControl = false;//控制点击切换后自动切换重新开始
 
         this.init();
     }
