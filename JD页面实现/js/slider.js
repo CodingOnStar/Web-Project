@@ -18,6 +18,7 @@ class Slider {
         this.leftRight();
     }
     initPoint() {
+        //动态生成标记的数量，并激活第一个
         const num = this.picBox.children.length;
         let fragment = document.createDocumentFragment();
         for (let i = 0; i < num; i++) {
@@ -34,11 +35,11 @@ class Slider {
             let offset = (pointIndex - this.index) * this.box.clientWidth
             this.index = pointIndex
             this.move(offset)
-
         })
     }
     //辅助图方案
     copyPic() {
+        //复制第一个和最后一个节点，分别放在最后和首部
         const first = this.picBox.firstElementChild.cloneNode(true);
         const last = this.picBox.lastElementChild.cloneNode(true);
         this.picBox.appendChild(first);
@@ -57,12 +58,12 @@ class Slider {
 
     }
     animate(offset) {
-        const time = 1000;
-        const rate = 1000;
+        const time = 1000;  //移动一幅图需要的时间
+        const rate = 1000;  //每一次移动的长度
         let speed = offset / (time / rate);
         let goal = parseFloat(this.picBox.style.left) - offset;
         let duration = Math.abs(parseFloat(this.picBox.style.left)) - Math.abs(goal)
-        this.animated = true;
+        this.animated = true;       //标志位，标志当前是否正在进行移动，由此使得移动中点击无效
         let animate = setInterval(() => {
             if (parseFloat(this.picBox.style.left) == goal || Math.abs(duration) < Math.abs(speed)) {
                 this.picBox.style.left = goal;
