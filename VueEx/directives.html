@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
+  <script>
+    var directives = {
+      demo: {
+        bind: function (el, binding, vnode) {
+          var s = JSON.stringify;
+          el.innerHTML =
+            'name: ' + s(binding.name) + '<br>' +
+            'value: ' + s(binding.value) + '<br>' +
+            'expression: ' + s(binding.expression) + '<br>' +
+            'argument: ' + s(binding.arg) + '<br>' +
+            'modifiers: ' + s(binding.modifiers) + '<br>' +
+            'vnode keys: ' + Object.keys(vnode).join(', ')
+        },
+      },
+    };
+    var Component = Vue.extend({
+      directives: directives,
+    });
+    var component = new Component({
+      el: "#hook-arguments-example",
+      data: {
+        message: "123",
+      },
+    });
+  </script>
+</body>
+
+</html>

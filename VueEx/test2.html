@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic Components Example</title>
+    <script src="./vue.js"></script>
+    <style>
+      .tab-button {
+        padding: 6px 10px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background: #f0f0f0;
+        margin-bottom: -1px;
+        margin-right: -1px;
+      }
+
+      .tab-button:hover {
+        background: #e0e0e0;
+      }
+
+      .tab-button.active {
+        background: #e0e0e0;
+      }
+
+      .tab {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <base-input
+        v-model="username"
+        url="www.baidu.com"
+        required
+        placeholder="Enter your username"
+      >
+        <p>{{username}}</p></base-input
+      >
+    </div>
+
+    <script>
+      Vue.component("base-input", {
+        inheritAttrs: false,
+        props: ["label", "value", "url"],
+        template: `
+    <label>
+      {{ url }}
+      <a v-bind:href="url" v-bind="$attrs" class="nav-link">kkk</a>
+      <input
+        v-bind="$attrs"
+        v-bind:value="value"
+        v-on:input="$emit('input', $event.target.value)"
+      >
+      <slot></slot>
+    </label>
+  `,
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          username: "",
+          title: "123",
+          url: "www.baidu.com",
+        },
+        methods: {
+          Tag: function (event) {
+            return event.target.tagName;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

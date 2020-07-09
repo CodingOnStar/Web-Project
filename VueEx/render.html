@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul-li v-bind:items="items"></ul-li>
+    </div>
+    <script>
+        Vue.component('ul-li', {
+            props: ['items'],
+            render: function (createElement) {
+                if (this.items.length) {
+                    return createElement('ul', this.items.map(function (item) {
+                        return createElement('li', item.name)
+                    }))
+                } else {
+                    return createElement('p', 'No items found.')
+                }
+            }
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                items: [
+                    { name: "One", value: "A" },
+                    { name: "Two", value: "B" },
+                    { name: "Three", value: "C" },
+                ],
+            }
+        })
+    </script>
+
+</body>
+
+</html>
