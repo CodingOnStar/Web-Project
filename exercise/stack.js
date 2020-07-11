@@ -1,28 +1,40 @@
-//数组实现
+//数组实现，复杂度O(n),私有属性
+const items = new WeakMap();
 class StackArray {
     constructor() {
-        this.items = [];
+        items.set(this, [])
+
+        //this.items = [];
     }
     push(item) {
-        this.items.push(item);
+        const s = items.get(this);
+        s.push(item);
     }
     pop() {
-        this.items.pop();
+        const s = items.get(this).pop();
+        return s
+
+        //this.items.pop();
     }
     size() {
-        return this.items.length;
+        const s = items.get(this);
+        return s.length;
     }
     isEmpty() {
-        return this.items.length === 0;
+        const s = items.get(this);
+        return s.length === 0;
     }
     peek() {
-        return this.items[this.items.length - 1];
+        const s = items.get(this);
+        return s[s.length - 1];
     }
     clear() {
-        this.items = [];
+        items.delete(this);
+        //this.items = [];
     }
 }
-//对象实现
+
+//对象实现,除了toString之外，其他复杂度都为O(1)
 class StackObject {
     constructor() {
         this.count = 0;
@@ -33,6 +45,9 @@ class StackObject {
         this.count++;
     }
     pop() {
+        if (this.isEmpty()) {
+            return undefined;
+        }
         this.count--;
         let item = this.items[this.count];
         delete this.items[this.count];
@@ -45,10 +60,44 @@ class StackObject {
         return this.items.count === 0;
     }
     peek() {
+        if (this.isEmpty()) {
+            return undefined;
+        }
         return this.items[this.count - 1]
     }
     clear() {
         this.count = 0;
         this.items = {};
     }
+    toString() {
+        if (this.isEmpty()) {
+            return "";
+        }
+        let stringObj = `${this.items[0]}`;
+        for (let i = 1; i < this.count; i++) {
+            stringObj = `${stringObj},${this.items[i]}`;
+        }
+        return stringObj;
+    }
 }
+//基于stack，将十进制数字实现三十六进制以下任意进制转换
+function baseConverter(decNumber, base) {
+    let stack = new StackArray()
+    let number = decNumber
+    let digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let rem
+    let baseString = ''
+
+    if (!(base >= 2 && base <= 36))
+        return ''
+    while (number > 0) {
+        rem = Math.floor(number % base)
+        stack.push(rem)
+        number = Math.floor(number / base)
+    }
+    while (!stack.isEmpty()) {
+        baseString += digits[stack.pop()];
+    }
+    return baseString
+}
+console.log(baseConverter(10, 7))
