@@ -128,3 +128,43 @@ class Deque {
         return objString
     }
 }
+//击鼓传花模拟
+function hotPotato(elementSList, num) {
+    const queue = new Queue()
+    const eliminatedList = []
+    for (let i = 0; i < elementSList.length; i++) {
+        queue.enqueue(elementSList[i])
+    }
+    while (queue.size() > 1) {
+        for (let i = 0; i < num; i++) {
+            queue.enqueue(queue.dequeue())
+        }
+        eliminatedList.push(queue.dequeue())
+    }
+    return {
+        eliminatedList: eliminatedList,
+        winner: queue.dequeue()
+    }
+}
+function palindromeChecker(aString) {
+    let reg = /[0-9A-Z]+/gi
+    if (!reg.test(aString)) {
+        return false
+    }
+    const deque = new Deque()
+    const lowerString = aString.toLocaleLowerCase()
+    let isEqual = true
+    let firstChar, lastChar
+    for (let i = 0; i < lowerString.length; i++) {
+        deque.addBack(lowerString.charAt(i))
+    }
+    while (deque.size() > 1 && isEqual) {
+        firstChar = deque.removeFront();
+        lastChar = deque.removeBack();
+        if (firstChar !== lastChar) {
+            isEqual = false
+        }
+    }
+    return isEqual
+}
+console.log('kayak', palindromeChecker('kayyak'))
