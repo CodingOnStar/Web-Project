@@ -165,3 +165,113 @@ class DoublyLinkedList extends LinkedList {
         return undefined
     }
 }
+class CircularLinkedList extends LinkedList {
+    constructor() {
+        super()
+    }
+    insert(element, index) {
+        if (index >= 0 && index < this.count) {
+            const node = new Node(element)
+            let current = this.head
+            if (index === 0) {
+                if (this.head == null) {
+                    this.head = node
+                    node.next = this.head
+                } else {
+                    node.next = this.head
+                    current = this.getElementAt(this.size())
+                    this.head = node
+                    current.next = this.head
+                }
+            } else {
+                const previous = this.getElementAt(index - 1)
+                node.next = previous.next
+                previous.next = node
+            }
+        }
+    }
+    removeAt(index) {
+        if (index >= 0 && index < this.count) {
+            let current = this.head
+            if (index === 0) {
+                if (this.size() === 1) {
+                    this.head = undefined
+                } else {
+                    const removed = this.head
+                    this.head = removed.next
+                    current = this.getElementAt(this.size())
+                    current.next = removed
+                    current = removed
+                }
+            } else {
+                const previous = this.getElementAt(index - 1)
+                current = previous.next
+                previous.next = current.next
+            }
+            this.count--
+            return current.element
+        }
+        return undefined
+    }
+}
+class SortedLink extends LinkedList {
+    constructor() {
+        super()
+        this.compare = { LESS_THAN: -1, BIGGER_THAN: 1 }
+    }
+    compareFn(a, b) {
+        if (a === b) { return 0 }
+        return a < b ? this.compare.LESS_THAN : this.compare.BIGGER_THAN
+    }
+    getIndexNextSortedElement(element) {
+        let current = this.head
+        for (let i = 0; i < this.count && current; i++) {
+            const comp = this.compareFn(element, current.element)
+            if (comp === this.compare.LESS_THAN) {
+                return i
+            }
+            current = current.next
+        }
+        return i
+    }
+    insert(element, index = 0) {
+        if (this.isEmpty()) {
+            return super.insert(element, 0)
+        }
+        const pos = this.getIndexNextSortedElement(element)
+        return super.insert(element, pos)
+    }
+}
+class StackLinkedList {
+    constructor() {
+        this.items = new DoublyLinkedList()
+    }
+    push(element) {
+        this.items.push(element)
+    }
+    pop() {
+        if (this.isEmpty()) {
+            return ""
+        } else {
+            return this.items.removeAt(this.size())
+        }
+    }
+    peek() {
+        if (this.isEmpty()) {
+            return ""
+        }
+        return this.items.getElementAt(this.size() - 1).element
+    }
+    clear() {
+        this.items.clear()
+    }
+    isEmpty() {
+        return this.items.isEmpty()
+    }
+    size() {
+        return this.items.size()
+    }
+    toString() {
+        return this.items.toString()
+    }
+}
