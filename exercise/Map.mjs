@@ -1,3 +1,4 @@
+export { ValuePair }
 class ValuePair {
     constructor(key, value) {
         this.key = key;
@@ -89,7 +90,7 @@ class Dictionary {
         return objString
     }
 }
-const dictionary = new Dictionary()
+/*const dictionary = new Dictionary()
 dictionary.set("G", '1111@email.com')
 dictionary.set("H", '2222@email.com')
 dictionary.set("C", '3333@email.com')
@@ -99,4 +100,4 @@ console.log(dictionary.values())
 console.log(dictionary.get("G"))
 dictionary.forEach((k, v) => {
     console.log('forEach', `key:${k}, value:${v}`)
-})
+})*/
