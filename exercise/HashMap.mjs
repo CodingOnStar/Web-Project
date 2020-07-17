@@ -31,6 +31,15 @@ class HashMap {
     hashCode(key) {
         return this.loseloseHashCode(key)
     }
+    //更好的散列函数
+    djb2HashCode(key) {
+        let hash = 5381
+        const tableKey = this.toStrFn(key)
+        for (let i = 0; i < tableKey.length; i++) {
+            hash = hash * 33 + tableKey.charCodeAt(i)
+        }
+        return hash % 1013
+    }
     push(key, value) {
         if (key != null && value != null) {
             const position = this.hashCode(key)
@@ -87,7 +96,7 @@ class HashTableSeparateChaining extends HashMap {
         if (linkedList != null && !linkedList.isEmpty()) {
             let current = linkedList.getHead()
             while (current != null) {
-                if (current.element.key === key) { //删除的是第一个，所以这个if条件可加可不加
+                if (current.element.key === key) {
                     linkedList.remove(current.element)
                     if (linkedList.isEmpty()) {
                         delete this.table[position]
@@ -100,12 +109,85 @@ class HashTableSeparateChaining extends HashMap {
         return false
     }
 }
+class HashTableLinearDetector extends HashMap {
+    constructor() {
+        super()
+        this.table = {}
+    }
+    push(key, value) {
+        if (key != null && value != null) {
+            const position = this.hashCode(key)
+            if (this.table[position] == null) {
+                this.table[position] = new ValuePair(key, value)
+            } else {
+                let index = position + 1
+                while (this.table[index] != null) {
+                    index++
+                }
+                this.table[index] = new ValuePair(key, value)
+            }
+            return true
+        }
+        return false
+    }
+    get(key) {
+        const position = this.hashCode(key)
+        if (this.table[position] != null) {
+            if (this.table[position].key === key)
+                return this.table[position]
+        } else {
+            let index = position + 1
+            while (this.table[index] != null && this.table[index].key !== key) {
+                index++
+            }
+            if ((this.table[index] != null && this.table[index].key === key)) {
+                return this.table[index].value
+            }
+        }
+        return undefined
+    }
+    verifyRemove(key, removedPosition) {
+        const hash = this.hashCode(key)
+        let index = removedPosition + 1
+        while (this.table[index != null]) {
+            const postHash = this.hashCode(this.table[index].key)
+            if (postHash <= hash || postHash <= removedPosition) {
+                this.table[removedPosition] = this.table[index]
+                delete this.table[index]
+                removedPosition = index
+            }
+            index++
+        }
+    }
+    remove(key) {
+        const position = this.hashCode(key)
+        if (this.table[position] != null) {
+            if (this.table[position].key === key) {
+                delete this.table[position]
+                this.verifyRemove(key, position)
+                return true
+            }
+
+            let index = position + 1
+            while (this.table[index] != null && this.table[index].key !== key) {
+                index++
+            }
+            if ((this.table[index] != null && this.table[index].key === key)) {
+                delete this.table[index]
+                this.verifyRemove(key, position)
+                return true
+            }
+        }
+        return false
+    }
+}
+
 const hash = new HashTableSeparateChaining()
-hash.put("1", "111")
+hash.put("Jonathan", "111")
 hash.put("2", "222")
 hash.put("3", "333")
 hash.put("4", "444")
-hash.put("1", "111-222")
+hash.put("Jamie", "111-222")
 hash.put("2", "222-222")
-hash.remove("1")
-console.log(hash.table[12])
+hash.remove("Jamie")
+console.log(hash.table[5])
