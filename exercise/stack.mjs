@@ -54,10 +54,10 @@ class StackObject {
         return item;
     }
     size() {
-        return this.items.count;
+        return this.count;
     }
     isEmpty() {
-        return this.items.count === 0;
+        return this.count === 0;
     }
     peek() {
         if (this.isEmpty()) {
@@ -100,4 +100,5 @@ function baseConverter(decNumber, base) {
     }
     return baseString
 }
-console.log(baseConverter(10, 7))
+// console.log(baseConverter(10, 7))
+export default StackObject

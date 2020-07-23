@@ -56,4 +56,5 @@ graph.addEdge('D', 'H')
 graph.addEdge('B', 'E')
 graph.addEdge('B', 'F')
 graph.addEdge('E', 'I')
-console.log(graph.toString())
+
+export { graph, myVertices }

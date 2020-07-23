@@ -1,10 +1,10 @@
-class Queue {
+export default class Queue {
     constructor() {
         this.items = {};
         this.count = 0;
         this.lowestCount = 0;
     }
-    push(element) {
+    enqueue(element) {
         this.items[this.count] = element;
         this.count++;
     }
@@ -139,7 +139,7 @@ function hotPotato(elementSList, num) {
         for (let i = 0; i < num; i++) {
             queue.enqueue(queue.dequeue())
         }
-        eliminatedList.push(queue.dequeue())
+        eliminatedList.enqueue(queue.dequeue())
     }
     return {
         eliminatedList: eliminatedList,
@@ -167,4 +167,4 @@ function palindromeChecker(aString) {
     }
     return isEqual
 }
-console.log('kayak', palindromeChecker('kayyak'))
+
