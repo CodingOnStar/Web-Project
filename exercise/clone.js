@@ -14,3 +14,5 @@ function deepClone (obj) {
     }
     return targetObj
 }
+//数组方法slice和concat都只对第一层进行深拷贝
+//对象的...展开实现的是对象带第一层的深拷贝，后面的拷贝都是引用值
