@@ -1,16 +1,37 @@
-function memoize (fn) {
-    const cache = {};
+// join :: String -> [String] -> String
+const join = curry((sep, arr) => arr.join(sep));
+// strLen :: String -> Number
+const strLen = str => str.length;
+const compose = (f, g) => x => f(g(x))
+function curry (fn, args) {
+    var length = fn.length;
+
+    args = args || [];
+
     return function () {
-        const key = JSON.stringify(arguments);
-        var value = cache[key];
-        if (!value) {
-            value = [fn.apply(null, arguments)];  // 放在一个数组中，方便应对 undefined，null 等异常情况
-            cache[key] = value;
+
+        var _args = args.slice(0),
+
+            arg, i;
+
+        for (i = 0; i < arguments.length; i++) {
+
+            arg = arguments[i];
+
+            _args.push(arg);
+
         }
-        return value[0];
+        if (_args.length < length) {
+            return curry.call(this, fn, _args);
+        }
+        else {
+            return fn.apply(this, _args);
+        }
     }
 }
 
-const fibonacci = memoize(n => n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2));
-console.log(fibonacci(4))  // 执行后缓存了 fibonacci(2), fibonacci(3),  fibonacci(4)
-console.log(fibonacci(10)) // fibonacci(2), fibonacci(3),  fibonacci(4) 的结果直接从缓存中取出，同时缓存其他的
+//sub_curry 的作用就是用函数包裹原函数，然后给原函数传入之前的参数，当执行 fn0(...)(...) 的时候，执行包裹函数，返回原函数，然后再调用 sub_curry 再包裹原函数，然后将新的参数混合旧的参数再传入原函数，直到函数参数的数目达到要求为止。
+
+const joinDash = join('-');
+const lengthWithDash = compose(strLen, joinDash);
+console.log(lengthWithDash(['abc', 'def']));  // 7
