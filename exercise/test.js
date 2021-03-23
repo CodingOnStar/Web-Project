@@ -1,4 +1,4 @@
-function add (a, b) {
+/* function add (a, b) {
     return a + b
 }
 var curry = function (fn) {
@@ -18,3 +18,12 @@ addCurry(2) // 3
 var addCurry = curry(add);
 addCurry(1, 2) // 3
 console.log(addCurry()) // 3
+ */
+Function.prototype.a = 'Function';
+Object.prototype.a = 'Object';
+
+function Person () { };
+var child = new Person();
+console.log(Person.a);
+console.log(child.a);
+console.log(child.__proto__.__proto__.constructor.constructor.constructor);
